@@ -6,7 +6,7 @@
    <div class="card card-default">
       <div class="card-header">Create post</div>
       <div class="card-body">
-         <form action="{{ route('posts.store') }}" method="POST">
+         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             @if ($errors->any())
                <div class="alert alert-danger">
