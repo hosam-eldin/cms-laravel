@@ -25,7 +25,7 @@
                <input type="text" id="name" class="form-control" name="name" value="{{ $category->name }}">
             </div>
             <div class="form-group">
-               <button class="btn btn-success mt-2">Update Category</button>
+               <button type="submit" class="btn btn-success mt-2">Update Category</button>
             </div>
          </form>
       </div>
