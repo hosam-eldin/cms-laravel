@@ -53,9 +53,18 @@
                <label for="image">Image</label>
                <input type="file" id="image" class="form-control" name="image">
             </div>
-
             <div class="form-group">
-               <button type="submit" class="btn btn-success mt-2">{{ isset($post) ? 'Update post' : 'Add Post' }}</button>
+               <label for="category">category</label>
+               <select name="category" id="category" class="form-control">
+                  @foreach ($categories as $category)
+                     <option @if (isset($post) && $category->id == $post->category_id) selected @endif value="{{ $category->id }}">
+                        {{ $category->name }}</option>
+                  @endforeach
+               </select>
+            </div>
+            <div class="form-group">
+               <button type="submit"
+                  class="btn btn-success mt-2">{{ isset($post) ? 'Update post' : 'Add Post' }}</button>
             </div>
          </form>
       </div>

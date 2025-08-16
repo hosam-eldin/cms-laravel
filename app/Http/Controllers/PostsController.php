@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Requests\CreatePostsRequest;
 use App\Http\Requests\UpdatePostsRequest;
 
@@ -18,7 +19,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['posts' => Post::all()]);
+        return view('posts.index', ['posts' => Post::all(), 'categories' => Category::all()]);
     }
 
     /**
@@ -28,8 +29,11 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['categories' => Category::all()]);
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -46,7 +50,8 @@ class PostsController extends Controller
             'description' => $request->description,
             'content' => $request->content,
             'image' => $image,
-            'published_at' => $request->published_at
+            'published_at' => $request->published_at,
+            'category_id' => $request->category
         ]);
         session()->flash('success', 'post created successfully');
 
@@ -72,7 +77,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create', ['post' => $post]);
+        return view('posts.create', ['post' => $post, 'categories' => Category::all()]);
     }
 
     /**
