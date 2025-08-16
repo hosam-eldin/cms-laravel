@@ -27,7 +27,7 @@
                         </td>
                         @if (!$post->Trashed())
                            <td>
-                              <a href="{{ route('posts.show', $post->id) }}" class="btn btn-info btn-small">Edit</a>
+                              <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-small">Edit</a>
                            </td>
                         @endif
                         <td>
