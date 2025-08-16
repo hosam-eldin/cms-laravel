@@ -8,10 +8,16 @@ use App\Http\Requests\CreatePostsRequest;
 use App\Http\Requests\UpdatePostsRequest;
 
 
-use Request;
+
+
 
 class PostsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('verifyCategoriesCount');
+    }
     /**
      * Display a listing of the resource.
      *
