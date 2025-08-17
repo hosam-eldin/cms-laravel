@@ -2,13 +2,13 @@
 
 @section('content')
    <div class="d-flex justify-content-end mb-2">
-      <a href="{{ route('categories.create') }}" class="btn btn-success float-right">Add Category</a>
+      <a href="{{ route('tags.create') }}" class="btn btn-success float-right">Add Tag</a>
    </div>
 
    <div class="card card-default">
-      <div class="card-header">Categories</div>
+      <div class="card-header">tags</div>
       <div class="card-body">
-         @if ($categories->count() > 0)
+         @if ($tags->count() > 0)
             <table class="table">
                <thead>
                   <th>Name</th>
@@ -16,19 +16,19 @@
                   <th></th>
                </thead>
                <tbody>
-                  @foreach ($categories as $category)
+                  @foreach ($tags as $tag)
                      <tr>
                         <td>
-                           {{ $category->name }}
+                           {{ $tag->name }}
                         </td>
                         <td>
-                           {{ $category->posts->count() }}
+                           {{ $tag->posts->count() }}
                         </td>
                         <td>
-                           <a href="{{ route('categories.edit', $category) }}" class="btn btn-info btn-sm">
+                           <a href="{{ route('tags.edit', $tag) }}" class="btn btn-info btn-sm">
                               Edit
                            </a>
-                           <div class="button btn btn-danger btn-small" onclick="handleDelete({{ $category->id }})">
+                           <div class="button btn btn-danger btn-small" onclick="handleDelete({{ $tag->id }})">
                               Delete
                            </div>
                         </td>
@@ -37,23 +37,23 @@
                </tbody>
             </table>
          @else
-            <h3 class="text-center">No Categories Yet</h3>
+            <h3 class="text-center">No tags Yet</h3>
          @endif
          <!-- Modal -->
          <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-               <form action="" method="POST" id="deleteCategoryForm">
+               <form action="" method="POST" id="deletetagForm">
                   @csrf
                   @method('DELETE')
 
                   <div class="modal-content">
                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Delete tag</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                      </div>
                      <div class="modal-body">
                         <p class="text-center text-bold">
-                           Are You Sure You Want To Delete Category?
+                           Are You Sure You Want To Delete tag?
                         </p>
                      </div>
                      <div class="modal-footer">
@@ -71,18 +71,11 @@
 @section('script')
    <script>
       function handleDelete(id) {
-         var form = document.getElementById('deleteCategoryForm')
-         form.action = '/categories/' + id
+         var form = document.getElementById('deletetagForm')
+         form.action = '/tags/' + id
 
          $('#deleteModal').modal('show')
 
       }
-
-      // function handleDelete(id) {
-      //    console.log('deleting', id);
-      //    document.activeElement.blur(); // إزالة الفوكس من أي عنصر حالياً
-      //    let modal = new bootstrap.Modal(document.getElementById('deleteCategoryForm'));
-      //    modal.show();
-      // }
    </script>
 @endsection

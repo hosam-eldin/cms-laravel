@@ -30,7 +30,7 @@
    <div id="app">
       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
          <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/home') }}">
                {{ config('app.name', 'Laravel') }}
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -94,11 +94,19 @@
                      {{ session()->get('success') }}
                   </div>
                @endif
+               @if (session()->has('error'))
+                  <div class="alert alert-danger">
+                     {{ session()->get('error') }}
+                  </div>
+               @endif
                <div class="row">
                   <div class="col-md-4">
                      <ul class="list-group">
                         <li class="list-group-item">
                            <a href="{{ route('posts.index') }}">posts</a>
+                        </li>
+                        <li class="list-group-item">
+                           <a href="{{ route('tags.index') }}">tags</a>
                         </li>
                         <li class="list-group-item">
                            <a href="{{ route('categories.index') }}">categories</a>

@@ -12,6 +12,7 @@
                <thead>
                   <th>image</th>
                   <th>title</th>
+                  <th>category</th>
                   <th></th>
                   <th></th>
 
@@ -25,6 +26,13 @@
                         <td>
                            {{ $post->title }}
                         </td>
+                        <td>
+                           <a href="{{ route('categories.edit', $post->category->id) }}">
+                              {{ $post->category->name }}
+                           </a>
+
+                        </td>
+
                         @if ($post->Trashed())
                            <td>
                               <form action="{{ route('restore-posts', $post->id) }}" method="POST">

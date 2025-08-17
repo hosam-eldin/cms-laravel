@@ -28,7 +28,8 @@ class UpdatePostsRequest extends FormRequest
             'description' => 'required',
             'image' => 'nullable|image',
             'content' => 'required',
-            'published_at' => 'nullable|date'
+            'published_at' => 'nullable|date',
+            'category' => 'required'
         ];
     }
 }
