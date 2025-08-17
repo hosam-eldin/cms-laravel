@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Requests\CreatePostsRequest;
 use App\Http\Requests\UpdatePostsRequest;
 
@@ -35,7 +36,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create', ['categories' => Category::all()]);
+        return view('posts.create', ['categories' => Category::all(), 'tags' => Tag::all()]);
     }
 
 
@@ -51,7 +52,7 @@ class PostsController extends Controller
     {
 
         $image = $request->image->store('posts');
-        Post::create([
+        $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
@@ -59,6 +60,9 @@ class PostsController extends Controller
             'published_at' => $request->published_at,
             'category_id' => $request->category
         ]);
+        if ($request->tags) {
+            $post->tags()->attach($request->tags);
+        }
         session()->flash('success', 'post created successfully');
 
         return redirect(route('posts.index'));
@@ -83,7 +87,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create', ['post' => $post, 'categories' => Category::all()]);
+        return view('posts.create', ['post' => $post, 'categories' => Category::all(), 'tags' => Tag::all()]);
     }
 
     /**
@@ -104,6 +108,9 @@ class PostsController extends Controller
         }
 
         $post->update($data);
+        if ($request->tags) {
+            $post->tags()->sync($request->tags);
+        }
         session()->flash('success', 'post updated successfully');
 
         return redirect(route('posts.index'));

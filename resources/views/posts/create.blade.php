@@ -1,8 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-
    <div class="card card-default">
       <div class="card-header">{{ isset($post) ? 'Edit post' : 'Create post' }}</div>
       <div class="card-body">
@@ -52,14 +50,23 @@
                   @endforeach
                </select>
             </div>
-            <div class="form-group">
-               <button type="submit"
-                  class="btn btn-success mt-2">{{ isset($post) ? 'Update post' : 'Add Post' }}</button>
-            </div>
-         </form>
+            @if ($tags->count() > 0)
+               <div class="form-group">
+                  <label for="tags">tags</label>
+                  <select name="tags[]" id="tags" class="form-control" multiple>
+                     @foreach ($tags as $tag)
+                        <option @if (isset($post) && $post->hasTag($tag->id)) selected @endif value="{{ $tag->id }}">
+                           {{ $tag->name }}</option>
+                     @endforeach
+                  </select>
+            @endif
       </div>
+      <div class="form-group">
+         <button type="submit" class="btn btn-success mt-2">{{ isset($post) ? 'Update post' : 'Add Post' }}</button>
+      </div>
+      </form>
    </div>
-
+   </div>
 @endsection
 @section('script')
    <script src="https://cdn.jsdelivr.net/npm/trix@2.1.15/dist/trix.umd.min.js"></script>
