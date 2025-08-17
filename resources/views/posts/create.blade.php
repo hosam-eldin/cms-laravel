@@ -53,7 +53,7 @@
             @if ($tags->count() > 0)
                <div class="form-group">
                   <label for="tags">tags</label>
-                  <select name="tags[]" id="tags" class="form-control" multiple>
+                  <select name="tags[]" id="tags" class="form-control tags-selector" multiple>
                      @foreach ($tags as $tag)
                         <option @if (isset($post) && $post->hasTag($tag->id)) selected @endif value="{{ $tag->id }}">
                            {{ $tag->name }}</option>
@@ -75,10 +75,16 @@
       flatpickr('#published_at', {
          enableTime: true
       });
+
+      $(document).ready(function() {
+         $('.tags-selector').select2();
+      });
    </script>
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 @endsection
 
 @section('css')
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/trix@2.1.15/dist/trix.min.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
