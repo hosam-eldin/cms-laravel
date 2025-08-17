@@ -8,17 +8,7 @@
       <div class="card-body">
          <form action="{{ route('categories.update', $category) }}" method="POST">
             @method('put')
-            @if ($errors->any())
-               <div class="alert alert-danger">
-                  <ul class="list-group">
-                     @foreach ($errors->all() as $error)
-                        <li class="list-group-item text-danger">
-                           {{ $error }}
-                        </li>
-                     @endforeach
-                  </ul>
-               </div>
-            @endif
+            @include('partials.errors')
             @csrf
             <div class="form-group">
                <label for="name">name</label>

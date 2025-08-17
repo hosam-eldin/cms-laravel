@@ -12,17 +12,7 @@
             @if (isset($post))
                @method('PUT')
             @endif
-            @if ($errors->any())
-               <div class="alert alert-danger">
-                  <ul class="list-group">
-                     @foreach ($errors->all() as $error)
-                        <li class="list-group-item text-danger">
-                           {{ $error }}
-                        </li>
-                     @endforeach
-                  </ul>
-               </div>
-            @endif
+            @include('partials.errors')
 
             <div class="form-group">
                <label for="title">title</label>
