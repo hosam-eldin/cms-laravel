@@ -21,7 +21,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'about',
     ];
+
+    public function isAdmin()
+    {
+        return $this->role == 'admin';
+    }
+
+    public function gravatar($size = 40)
+    {
+        $email = strtolower(trim($this->email));
+        $hash = md5($email);
+        return "https://www.gravatar.com/avatar/$hash?s=$size&d=mp";
+    }
 
     /**
      * The attributes that should be hidden for serialization.
