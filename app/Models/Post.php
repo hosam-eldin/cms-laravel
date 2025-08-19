@@ -21,7 +21,8 @@ class Post extends Model
         'content',
         'image',
         'published_at',
-        'category_id'
+        'category_id',
+        'user_id'
 
 
     ];
@@ -33,6 +34,11 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function tags()
