@@ -41,7 +41,8 @@
 
                   <div class="gap-xy-2 mt-6">
                      @foreach ($post->tags as $tag)
-                        <a class="badge badge-pill badge-secondary" href="#">{{ $tag->name }}</a>
+                        <a class="badge badge-pill badge-secondary"
+                           href="{{ route('blog.tag', $tag->id) }}">{{ $tag->name }}</a>
                      @endforeach
 
                   </div>
@@ -67,7 +68,7 @@
                      //  /*
                      var disqus_config = function() {
                         this.page.url =
-                        "{{ config('app.url') }}/blog/posts/{{ $post->id }}"; // Replace PAGE_URL with your page's canonical URL variable
+                           "{{ config('app.url') }}/blog/posts/{{ $post->id }}"; // Replace PAGE_URL with your page's canonical URL variable
                         this.page.identifier =
                            "{{ $post->id }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                      };
