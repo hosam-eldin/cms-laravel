@@ -22,7 +22,9 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome');
-Route::get('/blog/post{post}', [PostController::class, 'show'])->name('blog.show');
+Route::get('/blog/post/{post}', [PostController::class, 'show'])->name('blog.show');
+Route::get('/blog/categories/{category}', [PostController::class, 'category'])->name('blog.category');
+Route::get('/blog/tags/{tag}', [PostController::class, 'tag'])->name('blog.tag');
 
 Auth::routes();
 
